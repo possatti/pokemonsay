@@ -1,22 +1,21 @@
 #!/bin/sh
 
 # Define install directories and names
-install_path="$HOME/.pokemonsay/"
-bin_install_path="$HOME/bin/"
+install_path="$HOME/.pokemonsay"
+bin_path="$HOME/bin"
+bin_name="pokemonsay"
 
 # Make sure the directories exist
-mkdir -p $install_path
+mkdir -p $install_path/
 mkdir -p $install_path/cows/
-mkdir -p $bin_install_path
+mkdir -p $bin_path/
 
-# Copy the cows, the main script and the uninstall script to the
-# install path.
+# Copy the cows and the main script to the install path.
 cp ./cows/*.cow $install_path/cows/
-cp ./pokemonsay.sh $install_path
-cp ./uninstall.sh $install_path
+cp ./pokemonsay.sh $install_path/
 
-# Create a main script in the home bin directory.
-cat > $bin_install_path/pokemonsay <<- EOF
+# Create a bin script in the home bin directory.
+cat > $bin_path/$bin_name <<- EOF
 	#!/bin/sh
 
 	# This script changes to the pokemonsay installation directory,
@@ -24,15 +23,35 @@ cat > $bin_install_path/pokemonsay <<- EOF
 	# back to the previous directory.
 
 	current_path=`pwd`
-	cd $install_path
+	cd $install_path/
 	./pokemonsay.sh
 	cd \$current_path
 EOF
 
-# Change permission of the main script
-chmod +x $bin_install_path/pokemonsay
+# Create uninstall script in the install directory
+cat > $install_path/uninstall.sh <<- EOF
+	#!/bin/sh
 
-echo "The files were installed to '$install_path'."
-echo "A 'pokemonsay' script was created in '$bin_install_path'."
-echo "The uninstall script was copied to '$install_path'."
-echo "It may be necessary to logout and login back again in order to have the 'pokemonsay' available in your path."
+	#
+	# This script uninstalls pokemonsay.
+	#
+
+	# Remove the install directory
+	rm -r "$install_path/"
+
+	# Remove the bin file
+	rm "$bin_path/$bin_name"
+
+	# Say what's going on.
+	echo "'$install_path/' directory was removed."
+	echo "'$bin_path/$bin_name' file was removed."
+EOF
+
+# Change permission of the generated scripts
+chmod +x $bin_path/$bin_name
+chmod +x $install_path/uninstall.sh
+
+echo "The files were installed to '$install_path/'."
+echo "A '$bin_name' script was created in '$bin_path/'."
+echo "A uninstall script was created in '$install_path/'."
+echo "It may be necessary to logout and login back again in order to have the '$bin_name' available in your path."
