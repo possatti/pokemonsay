@@ -1,0 +1,2 @@
+# Ignore downloaded images.
+scrapped-data/*.png
