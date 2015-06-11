@@ -4,7 +4,7 @@
 # This script uninstall pokemonsay.
 #
 
-install_path="$HOME/.config/pokemonsay/"
+install_path="$HOME/.pokemonsay/"
 bin_path="$HOME/bin/pokemonsay"
 
 # Remove the install directory

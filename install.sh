@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Define install directories and names
-install_path="$HOME/.config/pokemonsay/"
+install_path="$HOME/.pokemonsay/"
 bin_install_path="$HOME/bin/"
 
 # Make sure the directories exist
