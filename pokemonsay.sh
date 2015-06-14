@@ -4,20 +4,37 @@ usage() {
 	echo
 	echo "  Description: Pokemonsay makes a pokémon say something to you."
 	echo
-	echo "  Usage: $(basename $0) [-p POKEMON_NAME] [-f COW_FILE] [-n] [-h] [MESSAGE]"
+	echo "  Usage: $(basename $0) [-p POKEMON_NAME] [-f COW_FILE] [-l] [-n] [-h] [MESSAGE]"
 	echo
 	echo "  Options:"
 	echo "    -p, --pokemon POKEMON_NAME"
 	echo "      Choose what pokemon will be used by its name."
 	echo "    -f, --file COW_FILE"
 	echo "      Specify which .cow file should be used."
+	echo "    -l, --list"
+	echo "      List all the pokémon avaiable."
 	echo "    -n, --no-name"
 	echo "      Do not tell the pokémon name."
 	echo "    -h, --help"
 	echo "      Display this usage message."
 	echo "    MESSAGE"
 	echo "      What the pokemon will say. If you don't provide a message, a message will be read form standard input."
-	exit 1
+	exit 0
+}
+
+# Where the pokemon are.
+pokemon_path=`pwd`/cows
+
+list_pokemon() {
+	echo "Pokémon avaiable in '$pokemon_path/':"
+	echo
+	all_pokemon="$(find $pokemon_path -name "*.cow" | sort)"
+	echo "$all_pokemon" | while read pokemon; do
+		pokemon=${pokemon##*/}
+		pokemon=${pokemon%.cow}
+		echo $pokemon
+	done
+	exit 0
 }
 
 # While there are arguments, keep reading them.
@@ -41,6 +58,9 @@ case $key in
 		COW_FILE="${1#*=}"
 		shift
 		;;
+	-l|--list)
+		list_pokemon
+		;;
 	-n|--no-name)
 		DISPLAY_NAME="NO"
 		shift
@@ -59,9 +79,6 @@ case $key in
 		;;
 esac
 done
-
-# Where the pokemon are.
-pokemon_path=`pwd`/cows
 
 # Define which pokemon should be displayed.
 if [ -n "$POKEMON_NAME" ]; then
