@@ -24,7 +24,7 @@ cat > $bin_path/$bin_name <<- EOF
 
 	current_path=`pwd`
 	cd $install_path/
-	./pokemonsay.sh
+	./pokemonsay.sh \$@
 	cd \$current_path
 EOF
 
