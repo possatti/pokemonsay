@@ -12,7 +12,7 @@ usage() {
 	echo "    -f, --file COW_FILE"
 	echo "      Specify which .cow file should be used."
 	echo "    -l, --list"
-	echo "      List all the pokémon avaiable."
+	echo "      List all the pokémon available."
 	echo "    -n, --no-name"
 	echo "      Do not tell the pokémon name."
 	echo "    -h, --help"
@@ -26,7 +26,7 @@ usage() {
 pokemon_path=`pwd`/cows
 
 list_pokemon() {
-	echo "Pokémon avaiable in '$pokemon_path/':"
+	echo "Pokémon available in '$pokemon_path/':"
 	echo
 	all_pokemon="$(find $pokemon_path -name "*.cow" | sort)"
 	echo "$all_pokemon" | while read pokemon; do
