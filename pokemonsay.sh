@@ -4,13 +4,15 @@ usage() {
 	echo
 	echo "  Description: Pokemonsay makes a pokémon say something to you."
 	echo
-	echo "  Usage: $(basename $0) [-p POKEMON_NAME] [-f COW_FILE] [-l] [-n] [-h] [MESSAGE]"
+	echo "  Usage: $(basename $0) [-p POKEMON_NAME] [-f COW_FILE] [-w COLUMN] [-l] [-n] [-h] [MESSAGE]"
 	echo
 	echo "  Options:"
 	echo "    -p, --pokemon POKEMON_NAME"
 	echo "      Choose what pokemon will be used by its name."
 	echo "    -f, --file COW_FILE"
 	echo "      Specify which .cow file should be used."
+	echo "    -w, --word-wrap COLUMN"
+	echo "      Specify roughly where messages should be wrapped."
 	echo "    -l, --list"
 	echo "      List all the pokémon available."
 	echo "    -n, --no-name"
@@ -58,6 +60,14 @@ case $key in
 		COW_FILE="${1#*=}"
 		shift
 		;;
+	-w|--word-wrap)
+		WORD_WRAP="$2"
+		shift; shift
+		;;
+	-w=*|--word-wrap=*)
+		WORD_WRAP="${1#*=}"
+		shift
+		;;
 	-l|--list)
 		list_pokemon
 		;;
@@ -80,6 +90,11 @@ case $key in
 esac
 done
 
+# Define where to wrap the message.
+if [ -n "$WORD_WRAP" ]; then
+	word_wrap="-W $WORD_WRAP"
+fi
+
 # Define which pokemon should be displayed.
 if [ -n "$POKEMON_NAME" ]; then
 	pokemon_cow=$(find $pokemon_path -name "$POKEMON_NAME.cow")
@@ -94,7 +109,7 @@ filename=$(basename "$pokemon_cow")
 pokemon_name="${filename%.*}"
 
 # Call cowsay.
-cowsay -f "$pokemon_cow" "$MESSAGE"
+cowsay -f "$pokemon_cow" "$word_wrap" "$MESSAGE"
 
 # Write the pokemon name, unless requested otherwise.
 if [ -z "$DISPLAY_NAME" ]; then
