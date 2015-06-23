@@ -4,7 +4,7 @@ usage() {
 	echo
 	echo "  Description: Pokemonsay makes a pokémon say something to you."
 	echo
-	echo "  Usage: $(basename $0) [-p POKEMON_NAME] [-f COW_FILE] [-w COLUMN] [-l] [-n] [-h] [MESSAGE]"
+	echo "  Usage: $(basename $0) [-p POKEMON_NAME] [-f COW_FILE] [-w COLUMN] [-l] [-n] [-t] [-h] [MESSAGE]"
 	echo
 	echo "  Options:"
 	echo "    -p, --pokemon POKEMON_NAME"
@@ -17,6 +17,8 @@ usage() {
 	echo "      List all the pokémon available."
 	echo "    -n, --no-name"
 	echo "      Do not tell the pokémon name."
+	echo "    -t, --think"
+	echo "      Make the pokémon think the message, instead of saying it."
 	echo "    -h, --help"
 	echo "      Display this usage message."
 	echo "    MESSAGE"
@@ -75,6 +77,10 @@ case $key in
 		DISPLAY_NAME="NO"
 		shift
 		;;
+	-t|--think)
+		THINK="YES"
+		shift
+		;;
 	-h|--help)
 		usage
 		;;
@@ -108,8 +114,12 @@ fi
 filename=$(basename "$pokemon_cow")
 pokemon_name="${filename%.*}"
 
-# Call cowsay.
-cowsay -f "$pokemon_cow" "$word_wrap" "$MESSAGE"
+# Call cowsay or cowthink.
+if [ -n "$THINK" ]; then
+	cowthink -f "$pokemon_cow" "$word_wrap" "$MESSAGE"
+else
+	cowsay -f "$pokemon_cow" "$word_wrap" "$MESSAGE"
+fi
 
 # Write the pokemon name, unless requested otherwise.
 if [ -z "$DISPLAY_NAME" ]; then
