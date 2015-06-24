@@ -63,7 +63,7 @@ In order to use `pokemonsay` you don't need to build anything because everything
 
 ```bash
 # Download pokémon images from Bulbapedia... Thanks bulbapedia!
-$ ./scrap_pokemon.py
+$ ./scrap_data.sh
 
 # Manipulate the downloaded images, to make the pokémon look
 # to the right, and trim the useless space around them.
