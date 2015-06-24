@@ -43,6 +43,12 @@ fortune | pokemonsay
 
 And if you really like it, you can add the command above to the end of your `~/.bashrc` file (or equivalent). So you will have a random pokémon speaking to you whenever you open a new terminal window! :D
 
+You get a cowthink-like version too. Try it:
+
+```bash
+$ pokemonthink --pokemon Charmander "Should I wear some clothes?"
+```
+
 ## Uninstall
 
 Just in case you hate Pokémon and you've installed `pokemonsay` "by mistake"... Humpf! You can uninstall it by running:
