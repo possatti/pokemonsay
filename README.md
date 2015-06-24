@@ -1,6 +1,8 @@
 pokemonsay
 ==========
 
+![You should try pokemonsay!](example.png)
+
 `pokemonsay` is like [`cowsay`][cowsay] but for pokémon only. It was inspired by [`ponysay`][ponysay] (`cowsay` for ponies). Internally, `pokemonsay` still uses `cowsay`, so you need it installed too (`cowsay`... not `ponysay`).
 
 ## Dependencies
@@ -30,7 +32,7 @@ It may be necessary to logout and login back again to have `pokemonsay` in you `
 Now that you've installed `pokemonsay`, you can make it work like so:
 
 ```bash
-$ echo "Hello everyone!" | pokemonsay
+$ pokemonsay Hello World
 ```
 
 To have a random pokémon saying some random thing to you, use `fortune`:
@@ -66,6 +68,10 @@ $ ./make_cows.sh
 ```
 
 And there it is. Now install it with `install.sh` and you are done.
+
+## Special Thanks
+
+A special thanks to my friend Lucas Coutinho Oliveira (@lucascsoliveira) who helped me with some Pokémon wisdom. Thanks buddy!
 
 ## NOTICE
 
