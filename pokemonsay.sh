@@ -84,6 +84,11 @@ case $key in
 	-h|--help)
 		usage
 		;;
+	-*)
+		echo
+		echo "  Unknown option '$1'"
+		usage
+		;;
 	*)
 		# Append this word to the message.
 		if [ -n "$MESSAGE" ]; then
