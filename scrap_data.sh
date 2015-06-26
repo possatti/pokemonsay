@@ -26,11 +26,12 @@ fi
 #   'cat' will read the file and pipe its output to 'sed'. 'sed'
 # will filter the html searching for the Pokémon name and its
 # image url. 'sed' will output the Pokémons in this format:
-# "<POKEMON_NAME>=<POKEMON_URL>".
-#   Then, the output of 'sed' goes into the while loop, which will
-# read the output one line at a time. Within the while loop, I
-# extract the pokemon name and the url from the read line. And
-# then, it just downloads the url to a file.
+# "<POKEMON_NAME>=<POKEMON_URL>". And the output of 'sed' will be
+# stored in a variable we will use later.
+#   Then, the content of the variable will be read one line at a
+# time in the for loop. Within the for loop, I extract the pokemon
+# name and the url from the read line. And then, it just downloads
+# the content of the url to a file.
 #   Again... I'm sorry for all the trouble. But I hope you will
 # grow stronger and may be able to turn this code into something
 # more readable.
@@ -38,10 +39,12 @@ fi
 #                                                     Kind regards,
 #                                           Yourself from the past.
 
-cat "$scrap_folder/$bulbapedia_page_name" | \
-sed -nr 's;^.*<img alt="(.*)" src="(http://cdn.bulbagarden.net/upload/.*\.png)" width="40" height="40" />.*$;\1=\2;p' | \
-while read line
-do
+pokemon_images=$(
+	cat "$scrap_folder/$bulbapedia_page_name" | \
+	sed -nr 's;^.*<img alt="(.*)" src="(http://cdn.bulbagarden.net/upload/.*\.png)" width="40" height="40" />.*$;\1=\2;p' \
+)
+
+for line in $pokemon_images; do
 	pokemon_name="${line%=*}"
 	pokemon_url="${line#*=}"
 
