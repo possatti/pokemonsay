@@ -51,6 +51,12 @@ for line in $pokemon_images; do
 	# Unescape HTML characters... Damn "Farfetch&#39;d".
 	pokemon_name=$(echo "$pokemon_name" | sed "s/&#39;/'/")
 
+	# If wget is interrupted by a SIGINT or something, it will
+	# leave a broken file. Let's remove it and exit in case we
+	# receive a signal like this.
+	# Signals: (1) SIGHUP; (2) SIGINT; (15) SIGTERM.
+	trap "rm $scrap_folder/$pokemon_name.png; echo Download of $pokemon_name was cancelled; exit" 1 2 15
+
 	echo "  > Downloading '$pokemon_name' from '$pokemon_url' to '$scrap_folder/$pokemon_name.png' ..."
 	wget "$pokemon_url" -O "$scrap_folder/$pokemon_name.png" -q
 done
