@@ -29,6 +29,15 @@ After the last command, you will have `pokemonsay` installed in you home folder 
 
 It may be necessary to logout and login back again to have `pokemonsay` in you `$PATH`. This is specially true if you have never had a `~/bin/` folder before. Your operating system will have it added to you `$PATH` automatically after the `~/bin/` folder is created... I hope.
 
+If you're using OS X, you additionally need to install `shuf` on your system:
+
+```bash
+$ brew install coreutils
+$ ln -s /usr/local/bin/gshuf /usr/local/bin/shuf
+```
+
+## Usage
+
 Now that you've installed `pokemonsay`, you can make it work like so:
 
 ```bash
@@ -38,7 +47,7 @@ $ pokemonsay Hello World
 To have a random pokémon saying some random thing to you, use `fortune`:
 
 ```bash
-fortune | pokemonsay
+$ fortune | pokemonsay
 ```
 
 And if you really like it, you can add the command above to the end of your `~/.bashrc` file (or equivalent). So you will have a random pokémon speaking to you whenever you open a new terminal window! :D
