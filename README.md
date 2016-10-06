@@ -29,12 +29,18 @@ After the last command, you will have `pokemonsay` installed in you home folder 
 
 It may be necessary to logout and login back again to have `pokemonsay` in you `$PATH`. This is specially true if you have never had a `~/bin/` folder before. Your operating system will have it added to you `$PATH` automatically after the `~/bin/` folder is created... I hope.
 
+### OS X
+
 If you're using OS X, you additionally need to install `shuf` on your system:
 
 ```bash
 $ brew install coreutils
 $ ln -s /usr/local/bin/gshuf /usr/local/bin/shuf
 ```
+
+### Docker
+
+There's an interesting fork by @xaviervia that allows you to run pokemonsay on Docker. Checkout [xaviervia/docker-pokemonsay](https://github.com/xaviervia/docker-pokemonsay)
 
 ## Usage
 
