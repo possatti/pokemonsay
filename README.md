@@ -40,7 +40,7 @@ $ ln -s /usr/local/bin/gshuf /usr/local/bin/shuf
 
 ### Docker
 
-There's an interesting fork by @xaviervia that allows you to run pokemonsay on Docker. Checkout [xaviervia/docker-pokemonsay](https://github.com/xaviervia/docker-pokemonsay)
+There's an interesting fork by @xaviervia that allows you to run pokemonsay on Docker. Checkout [xaviervia/docker-pokemonsay](https://github.com/xaviervia/docker-pokemonsay).
 
 ## Usage
 
