@@ -121,10 +121,13 @@ pokemon_name="${filename%.*}"
 
 # Call cowsay or cowthink.
 if [ -n "$THINK" ]; then
-	cowthink -f "$pokemon_cow" $word_wrap $MESSAGE
+	output=`cowthink -f "$pokemon_cow" $word_wrap $MESSAGE`
 else
-	cowsay -f "$pokemon_cow" $word_wrap $MESSAGE
+	output=`cowsay -f "$pokemon_cow" $word_wrap $MESSAGE`
 fi
+
+# Remove warnings about "Wide character".
+echo "$output" | sed "/Wide character in print/d"
 
 # Write the pokemon name, unless requested otherwise.
 if [ -z "$DISPLAY_NAME" ]; then
