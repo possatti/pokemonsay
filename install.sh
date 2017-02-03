@@ -24,10 +24,9 @@ cat > $bin_path/$pokemonsay_bin <<- EOF
 	# runs the main script for running the pokemonsay, and changes
 	# back to the previous directory.
 
-	current_path=`pwd`
 	cd $install_path/
 	./pokemonsay.sh \$@
-	cd \$current_path
+	cd - >/dev/null
 EOF
 
 # Create the pokemonthink script in the home bin directory.
@@ -38,10 +37,9 @@ cat > $bin_path/$pokemonthink_bin <<- EOF
 	# runs the main script for running the pokemonthink, and changes
 	# back to the previous directory.
 
-	current_path=`pwd`
 	cd $install_path/
 	./pokemonthink.sh \$@
-	cd \$current_path
+	cd - >/dev/null
 EOF
 
 # Create uninstall script in the install directory
