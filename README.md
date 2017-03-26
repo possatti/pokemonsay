@@ -5,7 +5,9 @@ pokemonsay
 
 `pokemonsay` is like [`cowsay`][cowsay] but for pokémon only. It was inspired by [`ponysay`][ponysay] (`cowsay` for ponies). Internally, `pokemonsay` still uses `cowsay`, so you need it installed too (`cowsay`... not `ponysay`).
 
-## Dependencies
+## Installation
+
+### Ubuntu
 
 If you simply want to use `pokemonsay`, the only thing you need installed is `cowsay`. But you are probably interested in `fortune` as well, to provide random sayings to your pokémon. To install them both in Ubuntu, simply run:
 
@@ -14,8 +16,6 @@ $ sudo apt-get install fortune cowsay
 ```
 
 If you want to rebuild everything in the repository, you will also need [`img2xterm`][img2xterm]. `img2xterm` is used to generate ".cow files" from the pokémon images. To install it you will need to build from source. The instructions are provided on their repository. And if you know an easier way, please tell me!
-
-## Installation
 
 Keep in mind that `pokemonsay` will only work if you have `cowsay` installed and available in your `$PATH`. To install `pokemonsay` run these commands in a terminal window:
 
@@ -31,16 +31,16 @@ It may be necessary to logout and login back again to have `pokemonsay` in you `
 
 ### OS X
 
-If you're using OS X, you additionally need to install `shuf` on your system:
+You can install `pokemonsay` through Homebrew. It is pretty straightforward:
 
-```bash
-$ brew install coreutils
-$ ln -s /usr/local/bin/gshuf /usr/local/bin/shuf
+```sh
+$ brew tap possatti/possatti
+$ brew install pokemonsay
 ```
 
 ### Docker
 
-There's an interesting fork by @xaviervia that allows you to run pokemonsay on Docker. Checkout [xaviervia/docker-pokemonsay](https://github.com/xaviervia/docker-pokemonsay).
+There's an interesting fork by @xaviervia that allows you to run `pokemonsay` on Docker. Check out [xaviervia/docker-pokemonsay](https://github.com/xaviervia/docker-pokemonsay).
 
 ## Usage
 
