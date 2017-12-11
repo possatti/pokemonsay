@@ -110,7 +110,7 @@ fi
 if [ "$(uname)" == 'Darwin' ]; then
   SHUF=gshuf
 else
-  SHUF=gshuf
+  SHUF=shuf
 fi
 
 # Define which pokemon should be displayed.
