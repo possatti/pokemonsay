@@ -106,13 +106,20 @@ if [ -n "$WORD_WRAP" ]; then
 	word_wrap="-W $WORD_WRAP"
 fi
 
+# Support MacOS 
+if [ "$(uname)" == 'Darwin' ]; then
+  SHUF=gshuf
+else
+  SHUF=gshuf
+fi
+
 # Define which pokemon should be displayed.
 if [ -n "$POKEMON_NAME" ]; then
 	pokemon_cow=$(find $pokemon_path -name "$POKEMON_NAME.cow")
 elif [ -n "$COW_FILE" ]; then
 	pokemon_cow="$COW_FILE"
 else
-	pokemon_cow=$(find $pokemon_path -name "*.cow" | shuf -n1)
+	pokemon_cow=$(find $pokemon_path -name "*.cow" | $SHUF -n1)
 fi
 
 # Get the pokemon name.
