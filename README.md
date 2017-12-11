@@ -34,6 +34,7 @@ It may be necessary to logout and login back again to have `pokemonsay` in you `
 You can install `pokemonsay` through Homebrew. It is pretty straightforward:
 
 ```sh
+$ brew install coreutils # to use gshuf
 $ brew tap possatti/possatti
 $ brew install pokemonsay
 ```
