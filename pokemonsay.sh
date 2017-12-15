@@ -27,16 +27,16 @@ usage() {
 }
 
 # Where the pokemon are.
-pokemon_path=`pwd`/cows
+pokemon_path="$(pwd)/cows"
 
 list_pokemon() {
 	echo "Pokémon available in '$pokemon_path/':"
 	echo
 	all_pokemon="$(find $pokemon_path -name "*.cow" | sort)"
 	echo "$all_pokemon" | while read pokemon; do
-		pokemon=${pokemon##*/}
-		pokemon=${pokemon%.cow}
-		echo $pokemon
+		pokemon="${pokemon##*/}"
+		pokemon="${pokemon%.cow}"
+		echo "$pokemon"
 	done
 	exit 0
 }
@@ -108,15 +108,15 @@ fi
 
 # Define which pokemon should be displayed.
 if [ -n "$POKEMON_NAME" ]; then
-	pokemon_cow=$(find $pokemon_path -name "$POKEMON_NAME.cow")
+	pokemon_cow="$(find "$pokemon_path" -name "$POKEMON_NAME.cow")"
 elif [ -n "$COW_FILE" ]; then
 	pokemon_cow="$COW_FILE"
 else
-	pokemon_cow=$(find $pokemon_path -name "*.cow" | shuf -n1)
+	pokemon_cow="$(find "$pokemon_path" -name "*.cow" | shuf -n1)"
 fi
 
 # Get the pokemon name.
-filename=$(basename "$pokemon_cow")
+filename="$(basename "$pokemon_cow")"
 pokemon_name="${filename%.*}"
 
 # Call cowsay or cowthink.
@@ -128,5 +128,5 @@ fi
 
 # Write the pokemon name, unless requested otherwise.
 if [ -z "$DISPLAY_NAME" ]; then
-	echo $pokemon_name
+	echo "$pokemon_name"
 fi

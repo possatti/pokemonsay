@@ -6,7 +6,7 @@
 
 bulbapedia_page_url="http://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_Kanto_Pok%C3%A9dex_number"
 bulbapedia_page_name="bulbapedia.html"
-scrap_folder="`pwd`/scrapped-data"
+scrap_folder="$(pwd)/scrapped-data"
 
 # Make sure the directory for the scrapped data is there.
 mkdir -p "$scrap_folder"
@@ -18,7 +18,7 @@ if [ ! -e "scrapped-data/bulbapedia.html" ]; then
 	echo "  > Downloaded."
 fi
 
-# Dear furure me,
+# Dear future me,
 #
 #   If you are in need to maintain this part of the code... I am
 # realy sorry for you (T.T). This was the best I could do... But
