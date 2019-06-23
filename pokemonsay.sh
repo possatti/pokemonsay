@@ -108,7 +108,7 @@ fi
 
 # Define which pokemon should be displayed.
 if [ -n "$POKEMON_NAME" ]; then
-	pokemon_cow=$(find $pokemon_path -name "$POKEMON_NAME.cow")
+	pokemon_cow=$(find $pokemon_path -iname "$POKEMON_NAME.cow")
 elif [ -n "$COW_FILE" ]; then
 	pokemon_cow="$COW_FILE"
 else
