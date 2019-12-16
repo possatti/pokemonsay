@@ -1,30 +1,31 @@
 #!/bin/bash
 
 usage() {
-	echo "
-Description: Pokemonsay makes a pokémon say something to you.
-Usage: $(basename $0) [-p POKEMON_NAME] [-f COW_FILE] [-w COLUMN] [-l] [-n] [-t] [-h] [MESSAGE]
+  echo "
+  Description: Prints a Pokémon with a message.
+  Usage:
+	$(basename $0) [-p POKÉMON] [-f COWFILE] [-w COLUMN] [-lnNt] [-h] [MESSAGE]
 
-Options:
-  -p, --pokemon POKEMON_NAME
-    Choose what pokemon will be used by its name.
-  -f, --file COW_FILE
-    Specify which .cow file should be used.
-  -W, --word-wrap COLUMN
-    Specify roughly where messages should be wrapped.
-  -n, --no-wrap
-    Do not wrap the messages.
-  -l, --list
-    List all the pokémon available.
-  -N, --no-name
-    Do not tell the pokémon name.
-  -t, --think
-    Make the pokémon think the message, instead of saying it.
-  -h, --help
-    Display this usage message.
-  MESSAGE
-    What the pokemon will say. If you don't provide a message, a message will be read form standard input."
-	exit 0
+  Options:
+    -p, --pokemon POKÉMON_NAME
+      CHOOSE a Pokémon by name.
+    -f, --file COWFILE
+      CHOOSE a Pokémon cowfile.
+    -W, --word-wrap COLUMN
+      Specifies roughly where the message should be wrapped.
+    -n, --no-wrap
+      Do not wrap the message.
+    -l, --list
+      List all the Pokémon available.
+    -N, --no-name
+      Do not print the name of the Pokémon.
+    -t, --think
+      Make the Pokémon think the message instead of saying it.
+    -h, --help
+      Display this usage message.
+    MESSAGE
+      The message for chosen Pokémon to say. If this is not provided the Pokémon will read from STDIN"
+    exit 0
 }
 
 # Where the pokemon are.
