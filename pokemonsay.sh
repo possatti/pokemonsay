@@ -103,7 +103,7 @@ done
 
 # Disable wrapping if the option is set, otherwise
 # define where to wrap the message.
-if [ "${DISABLE_WRAP:-}" == "YES" ]; then
+if [ -n "$DISABLE_WRAP" ]; then
 	word_wrap="-n"
 elif [ -n "$WORD_WRAP" ]; then
 	word_wrap="-W $WORD_WRAP"
@@ -111,23 +111,16 @@ fi
 
 # Define which pokemon should be displayed.
 if [ -n "$POKEMON_NAME" ]; then
-	pokemon_cow=$(find $pokemon_path -name "$POKEMON_NAME.cow")
+	cowsay -f "$pokemon_path/$POKEMON_NAME.cow" $word_wrap $MESSAGE
 elif [ -n "$COW_FILE" ]; then
-	pokemon_cow="$COW_FILE"
+	cowsay -f "$COW_FILE" $word_wrap $MESSAGE
 else
-	pokemon_cow=$(find $pokemon_path -name "*.cow" | shuf -n1)
+  a=($pokemon_path/*)
+	cowsay -f "${a[$((RANDOM % ${#a[@]}))]}" $word_wrap $MESSAGE
 fi
 
-# Get the pokemon name.
-filename=$(basename "$pokemon_cow")
-pokemon_name="${filename%.*}"
-
-# Call cowsay or cowthink.
-if [ -n "$THINK" ]; then
-	cowthink -f "$pokemon_cow" $word_wrap $MESSAGE
-else
-	cowsay -f "$pokemon_cow" $word_wrap $MESSAGE
-fi
+# Call cowsay ~or cowthink~.
+# TODO: restore cowthink functionality after fine-tuning cowsay
 
 # Write the pokemon name, unless requested otherwise.
 if [ -z "$DISPLAY_NAME" ]; then
