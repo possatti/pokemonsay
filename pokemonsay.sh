@@ -1,30 +1,29 @@
 #!/bin/bash
 
 usage() {
-	echo
-	echo "  Description: Pokemonsay makes a pokémon say something to you."
-	echo
-	echo "  Usage: $(basename $0) [-p POKEMON_NAME] [-f COW_FILE] [-w COLUMN] [-l] [-n] [-t] [-h] [MESSAGE]"
-	echo
-	echo "  Options:"
-	echo "    -p, --pokemon POKEMON_NAME"
-	echo "      Choose what pokemon will be used by its name."
-	echo "    -f, --file COW_FILE"
-	echo "      Specify which .cow file should be used."
-	echo "    -W, --word-wrap COLUMN"
-	echo "      Specify roughly where messages should be wrapped."
-	echo "    -n, --no-wrap"
-	echo "      Do not wrap the messages."
-	echo "    -l, --list"
-	echo "      List all the pokémon available."
-	echo "    -N, --no-name"
-	echo "      Do not tell the pokémon name."
-	echo "    -t, --think"
-	echo "      Make the pokémon think the message, instead of saying it."
-	echo "    -h, --help"
-	echo "      Display this usage message."
-	echo "    MESSAGE"
-	echo "      What the pokemon will say. If you don't provide a message, a message will be read form standard input."
+	echo "
+Description: Pokemonsay makes a pokémon say something to you.
+Usage: $(basename $0) [-p POKEMON_NAME] [-f COW_FILE] [-w COLUMN] [-l] [-n] [-t] [-h] [MESSAGE]
+
+Options:
+  -p, --pokemon POKEMON_NAME
+    Choose what pokemon will be used by its name.
+  -f, --file COW_FILE
+    Specify which .cow file should be used.
+  -W, --word-wrap COLUMN
+    Specify roughly where messages should be wrapped.
+  -n, --no-wrap
+    Do not wrap the messages.
+  -l, --list
+    List all the pokémon available.
+  -N, --no-name
+    Do not tell the pokémon name.
+  -t, --think
+    Make the pokémon think the message, instead of saying it.
+  -h, --help
+    Display this usage message.
+  MESSAGE
+    What the pokemon will say. If you don't provide a message, a message will be read form standard input."
 	exit 0
 }
 
