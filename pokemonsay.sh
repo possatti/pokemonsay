@@ -23,7 +23,7 @@ usage() {
       Make the Pokémon think the message instead of saying it.
     -h, --help
       Display this usage message.
-    MESSAGE
+    message
       The message for chosen Pokémon to say. If this is not provided the Pokémon will read from STDIN"
     exit 0
 }
@@ -32,95 +32,46 @@ usage() {
 pokemon_path=$PWD/cows
 
 list_pokemon() {
-	echo "Pokémon available in '$pokemon_path/':"
+	echo "Pokémon available in '$POKEMON/':"
 	cat ./Poké.dex
 	exit 0
 }
 
-# While there are arguments, keep reading them.
-while [ $# -gt 0 ]
-do
-key="$1"
-case $key in
-	-p|--pokemon)
-		POKEMON_NAME="$2"
-		shift; shift
-		;;
-	-p=*|--pokemon=*)
-		POKEMON_NAME="${1#*=}"
-		shift
-		;;
-	-f|--file)
-		COW_FILE="$2"
-		shift; shift
-		;;
-	-f=*|--file=*)
-		COW_FILE="${1#*=}"
-		shift
-		;;
-	-W|--word-wrap)
-		WORD_WRAP="$2"
-		shift; shift
-		;;
-	-W=*|--word-wrap=*)
-		WORD_WRAP="${1#*=}"
-		shift
-		;;
-	-n|--no-wrap)
-		DISABLE_WRAP="YES"
-		shift
-		;;
-	-l|--list)
-		list_pokemon
-		;;
-	-n|--no-name)
-		DISPLAY_NAME="NO"
-		shift
-		;;
-	-t|--think)
-		THINK="YES"
-		shift
-		;;
-	-h|--help)
-		usage
-		;;
-	-*)
-		echo
-		echo "  Unknown option '$1'"
-		usage
-		;;
-	*)
-		# Append this word to the message.
-		if [ -n "$MESSAGE" ]; then
-			MESSAGE="$MESSAGE $1"
-		else
-			MESSAGE="$1"
-		fi
-		shift
-		;;
-esac
+while getopts ":p:f:wnNlh" Option ; do
+  case $Option in
+    f ) cowfile="$OPTARG" ;;
+    p ) pokemon="$POKEMON/$OPTARG" ;;
+    w ) WORD_WRAP="$OPTARG" ;;
+    n ) DISABLE_WRAP=true   ;;
+    N ) DISABLE_NAME=true   ;;
+    l ) list_pokemon        ;;
+    h ) usage               ;;
+    * ) echo "Unimplemented option chosen." && usage ;;
+  esac
 done
+
+shift $(($OPTIND - 1))
+MESSAGE="${1}"
 
 # Disable wrapping if the option is set, otherwise
 # define where to wrap the message.
-if [ -n "$DISABLE_WRAP" ]; then
-	word_wrap="-n"
-elif [ -n "$WORD_WRAP" ]; then
+# word_wrap="-n"
+if [ -n "$WORD_WRAP" ]; then
 	word_wrap="-W $WORD_WRAP"
 fi
+echo "w: ${word_wrap}"
 
-# Define which pokemon should be displayed.
+# Define which pokemon should be displayed, then call
+# cowsay ~or cowthink~.
+# TODO: restore cowthink functionality after fine-tuning cowsay
 if [ -n "$POKEMON_NAME" ]; then
 	cowsay -f "$pokemon_path/$POKEMON_NAME.cow" $word_wrap $MESSAGE
 elif [ -n "$COW_FILE" ]; then
 	cowsay -f "$COW_FILE" $word_wrap $MESSAGE
 else
   a=($pokemon_path/*)
-	cowsay -f "${a[$((RANDOM % ${#a[@]}))]}" $word_wrap $MESSAGE
+	cowsay -f "${a[$((RANDOM % ${#a[@]}))]}" $word_wrap "$MESSAGE"
 fi
-
-# Call cowsay ~or cowthink~.
-# TODO: restore cowthink functionality after fine-tuning cowsay
 
 # Write the pokemon name, unless requested otherwise.
 if [ -z "$DISPLAY_NAME" ]; then
