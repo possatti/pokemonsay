@@ -29,7 +29,7 @@ usage() {
 }
 
 # Where the pokemon are.
-pokemon_path=`pwd`/cows
+pokemon_path=$PWD/cows
 
 list_pokemon() {
 	echo "Pokémon available in '$pokemon_path/':"
