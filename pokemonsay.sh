@@ -11,7 +11,7 @@ usage() {
       CHOOSE a Pokémon by name.
     -f, --file COWFILE
       CHOOSE a Pokémon cowfile.
-    -W, --word-wrap COLUMN
+    -w, --word-wrap COLUMN
       Specifies roughly where the message should be wrapped.
     -n, --no-wrap
       Do not wrap the message.
@@ -24,12 +24,10 @@ usage() {
     -h, --help
       Display this usage message.
     message
-      The message for chosen Pokémon to say. If this is not provided the Pokémon will read from STDIN"
-    exit 0
+      The message for chosen Pokémon to say. If this is not provided the Pokémon will read from STDIN
+"
+  exit 0
 }
-
-# Where the pokemon are.
-pokemon_path=$PWD/cows
 
 list_pokemon() {
 	echo "Pokémon available in '$POKEMON/':"
@@ -37,11 +35,14 @@ list_pokemon() {
 	exit 0
 }
 
+# Disable wrapping by default
+WORD_WRAP="-n"
+
 while getopts ":p:f:wnNlh" Option ; do
   case $Option in
-    f ) cowfile="$OPTARG" ;;
-    p ) pokemon="$POKEMON/$OPTARG" ;;
-    w ) WORD_WRAP="$OPTARG" ;;
+    f ) COWFILE="$OPTARG" ;;
+    p ) I_CHOOSE="$OPTARG" ;;
+    w ) WORD_WRAP="-W $OPTARG" ;;
     n ) DISABLE_WRAP=true   ;;
     N ) DISABLE_NAME=true   ;;
     l ) list_pokemon        ;;
@@ -53,27 +54,20 @@ done
 shift $(($OPTIND - 1))
 MESSAGE="${1}"
 
-# Disable wrapping if the option is set, otherwise
-# define where to wrap the message.
-# word_wrap="-n"
-if [ -n "$WORD_WRAP" ]; then
-	word_wrap="-W $WORD_WRAP"
-fi
-echo "w: ${word_wrap}"
-
-# Define which pokemon should be displayed, then call
-# cowsay ~or cowthink~.
-# TODO: restore cowthink functionality after fine-tuning cowsay
-if [ -n "$POKEMON_NAME" ]; then
-	cowsay -f "$pokemon_path/$POKEMON_NAME.cow" $word_wrap $MESSAGE
+# Define which pokemon should be displayed, then call cowsay or cowthink
+# TODO: restore cowthink after fine-tuning cowsay
+if [ -n "$I_CHOOSE" ]; then
+	cowsay -f "$PWD/cows/$I_CHOOSE.cow" $WORD_WRAP "$MESSAGE"
 elif [ -n "$COW_FILE" ]; then
-	cowsay -f "$COW_FILE" $word_wrap $MESSAGE
+	cowsay -f "$COW_FILE" $WORD_WRAP "$MESSAGE"
 else
-  a=($pokemon_path/*)
-	cowsay -f "${a[$((RANDOM % ${#a[@]}))]}" $word_wrap "$MESSAGE"
+  a=(cows/*)
+  I_CHOOSE=${a[$((RANDOM % ${#a[@]}))]}
+  I_CHOOSE=${I_CHOOSE#cows/}
+  I_CHOOSE=${I_CHOOSE%.cow}
+	cowsay -f $PWD/cows/$I_CHOOSE.cow $WORD_WRAP "$MESSAGE"
 fi
 
 # Write the pokemon name, unless requested otherwise.
-if [ -z "$DISPLAY_NAME" ]; then
-	echo $pokemon_name
-fi
+[ -n "$DISABLE_NAME" ] && echo $I_CHOOSE
+
