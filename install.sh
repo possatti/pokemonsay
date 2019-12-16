@@ -5,14 +5,17 @@ install_path="$HOME/.pokemonsay"
 bin_path="$HOME/bin"
 pokemonsay_bin="pokemonsay"
 pokemonthink_bin="pokemonthink"
+pokedex="Poké.dex"
 
 # Make sure the directories exist
 mkdir -p $install_path/
 mkdir -p $install_path/cows/
 mkdir -p $bin_path/
+ls -1 ./cows/ > ./$pokedex
 
 # Copy the cows and the main script to the install path.
 cp ./cows/*.cow $install_path/cows/
+cp ./$pokedex $install_path/
 cp ./pokemonsay.sh $install_path/
 cp ./pokemonthink.sh $install_path/
 

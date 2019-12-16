@@ -33,13 +33,7 @@ pokemon_path=$PWD/cows
 
 list_pokemon() {
 	echo "Pokémon available in '$pokemon_path/':"
-	echo
-	all_pokemon="$(find $pokemon_path -name "*.cow" | sort)"
-	echo "$all_pokemon" | while read pokemon; do
-		pokemon=${pokemon##*/}
-		pokemon=${pokemon%.cow}
-		echo $pokemon
-	done
+	cat ./Poké.dex
 	exit 0
 }
 
