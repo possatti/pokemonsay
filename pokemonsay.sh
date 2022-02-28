@@ -36,8 +36,8 @@ list_pokemon() {
 	echo "$all_pokemon" | while read pokemon; do
 		pokemon=${pokemon##*/}
 		pokemon=${pokemon%.cow}
-		echo $pokemon
-	done
+		printf "%-8s\n" "${pokemon}"
+	done | column -x
 	exit 0
 }
 
