@@ -4,7 +4,7 @@
 # This script scraps some pokémon pictures from Bulbapedia.
 #
 
-bulbapedia_page_url="http://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_Kanto_Pok%C3%A9dex_number"
+bulbapedia_page_url="http://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_Johto_Pok%C3%A9dex_number"
 bulbapedia_page_name="bulbapedia.html"
 scrap_folder="`pwd`/scrapped-data"
 

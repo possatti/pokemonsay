@@ -1,2 +1,3 @@
 # Ignore downloaded files.
 scrapped-data/
+.DS_Store
