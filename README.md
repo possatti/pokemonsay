@@ -78,7 +78,7 @@ In order to use `pokemonsay` you don't need to build anything because everything
 
 ```bash
 # Download pokémon images from Bulbapedia... Thanks bulbapedia!
-$ ./scrap_data.sh
+$ ./download_pokemon.py
 
 # Manipulate the downloaded images, to make the pokémon look
 # to the right, and trim the useless space around them.
@@ -98,7 +98,7 @@ A special thanks to my friend Lucas Coutinho Oliveira (@lucascsoliveira) who hel
 
 Please notice I don't own Pokémon or anything related to it. Pokémon is property of [The Pokémon Company][the-pokemon-company].
 
-[img2xterm]: https://github.com/rossy/img2xterm
+[img2xterm]: https://github.com/Huckdirks/img2xterm
 [cowsay]: https://en.wikipedia.org/wiki/Cowsay
 [ponysay]: https://github.com/erkin/ponysay
 [the-pokemon-company]: https://en.wikipedia.org/wiki/The_Pok%C3%A9mon_Company

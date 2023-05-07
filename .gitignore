@@ -1,3 +1,6 @@
-# Ignore downloaded files.
+# Directories
 scrapped-data/
+.vscode/
+
+# Files
 .DS_Store

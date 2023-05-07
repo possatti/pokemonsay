@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# AS OF Huckdirk's FORK, THIS SCRIPT IS NOT USED ANYMORE!!!
+# I actually don't think this was ever usable, since it downloads the html of the page, not the images.
+
 #
 # This script scraps some pokémon pictures from Bulbapedia.
 #
