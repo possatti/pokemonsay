@@ -5,6 +5,10 @@ pokemonsay
 
 `pokemonsay` is like [`cowsay`][cowsay] but for pokémon only. It was inspired by [`ponysay`][ponysay] (`cowsay` for ponies). Internally, `pokemonsay` still uses `cowsay`, so you need it installed too (`cowsay`... not `ponysay`).
 
+## Huck's Updates
+
+Once you've installed [pokemonsay](https://github.com/possatti/pokemonsay) you'll have to manually add the new .cow files to the `pokemonsay/v*.*.*/cows/` directory on your computer from the `cows/` directory of this repository. I don't know where exactly this is for Ubuntu, but for Mac it's in `/opt/homebrew/Cellar/pokemonsay/v1.0.0/cows`. I could make a quick script to add the files, but I'm lazy & frankly I'm pretty done with this project aside from occasionally adding new Pokémon as they release (hopefully). Just make sure you download [pokemonsay](https://github.com/possatti/pokemonsay) as normal, then replace the `cows/` directory with the one from this repository.
+
 ## Installation
 
 ### Ubuntu
