@@ -5,6 +5,12 @@ pokemonsay
 
 `pokemonsay` is like [`cowsay`][cowsay] but for pokémon only. It was inspired by [`ponysay`][ponysay] (`cowsay` for ponies). Internally, `pokemonsay` still uses `cowsay`, so you need it installed too (`cowsay`... not `ponysay`).
 
+## Huck's Updates
+
+I've added the whole Pokédex (up to Gen 9 so far) to this repository!
+
+Once you've installed [pokemonsay](https://github.com/possatti/pokemonsay) you'll have to manually add the new .cow files to the `pokemonsay/v*.*.*/cows/` directory on your computer from the `cows/` directory of this repository. I don't know where exactly this is for Ubuntu, but for Mac it's in `/opt/homebrew/Cellar/pokemonsay/v1.0.0/cows`. I could make a quick script to add the files, but I'm lazy & frankly I'm pretty done with this project aside from occasionally adding new Pokémon as they release (hopefully). Just make sure you download [pokemonsay](https://github.com/possatti/pokemonsay) as normal, then replace the `cows/` directory with the one from this repository.
+
 ## Installation
 
 ### Ubuntu
@@ -78,7 +84,7 @@ In order to use `pokemonsay` you don't need to build anything because everything
 
 ```bash
 # Download pokémon images from Bulbapedia... Thanks bulbapedia!
-$ ./scrap_data.sh
+$ ./download_pokemon.py
 
 # Manipulate the downloaded images, to make the pokémon look
 # to the right, and trim the useless space around them.
@@ -98,7 +104,7 @@ A special thanks to my friend Lucas Coutinho Oliveira (@lucascsoliveira) who hel
 
 Please notice I don't own Pokémon or anything related to it. Pokémon is property of [The Pokémon Company][the-pokemon-company].
 
-[img2xterm]: https://github.com/rossy/img2xterm
+[img2xterm]: https://github.com/Huckdirks/img2xterm
 [cowsay]: https://en.wikipedia.org/wiki/Cowsay
 [ponysay]: https://github.com/erkin/ponysay
 [the-pokemon-company]: https://en.wikipedia.org/wiki/The_Pok%C3%A9mon_Company
