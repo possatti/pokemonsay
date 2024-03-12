@@ -41,6 +41,6 @@ def process_images(file_path, prefix='', output_folder="gen_9"):
 message_gen_9 = process_images('gen_9.png')
 
 # Process the second image
-message_gen_9_shiny = process_images('gen_9_shiny.png', 'shiny-1')
+message_gen_9_shiny = process_images('gen_9_shiny.png', 'shiny-')
 
 (message_gen_9, message_gen_9_shiny)
